@@ -1,0 +1,18 @@
+.container{
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+}
+form{
+    flex-direction: column;
+    display: flex;
+}
+mat-card{
+    padding: 50px;
+}
+mat-form-field{
+    margin: 10px 0;
+}
+button{
+    margin-top: 15px;
+}
