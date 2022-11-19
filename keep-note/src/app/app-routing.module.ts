@@ -5,11 +5,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate : [AuthGuard],
   },
   {
     path: '',

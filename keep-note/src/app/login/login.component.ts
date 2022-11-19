@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { RouteService } from '../services/route.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fg : FormBuilder) { }
+  constructor(private fg : FormBuilder,private auth : AuthService,private route : RouteService) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +21,17 @@ export class LoginComponent implements OnInit {
   })
 
   submit(user:any) {
-    
+    if (user) {
+      const username = user.get('username').value;
+      const password = user.get('password').value;
+      if (this.auth.login(username,password)) {
+        this.auth.isLoggedIn = true;
+        this.route.navigateToNoteReqestView();
+      }
+      else {
+        alert("Invalid credentials");
+      }
+    }
   }
 
 }
