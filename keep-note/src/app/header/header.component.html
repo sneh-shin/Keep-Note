@@ -8,6 +8,10 @@
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <a routerLink="/">Keep Note</a>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="logout()" *ngIf="isLoggedIn">
+    <mat-icon class="icon">logout</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
 import { AuthService } from '../services/auth.service';
 import { RouteService } from '../services/route.service';
 
@@ -10,7 +11,7 @@ import { RouteService } from '../services/route.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fg : FormBuilder,private auth : AuthService,private route : RouteService) { }
+  constructor(private fg : FormBuilder,private auth : AuthService,private route : RouteService,private header :HeaderComponent) { }
 
   ngOnInit(): void {
   }
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     if (user) {
       const username = user.get('username').value;
       const password = user.get('password').value;
-      if (this.auth.login(username,password)) {
+      if (this.auth.login(username, password)) {
+        this.header.isLoggedIn = true;
         this.auth.isLoggedIn = true;
         this.route.navigateToNoteReqestView();
       }
