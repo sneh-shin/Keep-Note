@@ -1,0 +1,53 @@
+<div class="container">
+            <mat-card>
+                <mat-card-title>
+                    Add Note
+                </mat-card-title>
+                <mat-card-content>
+                <form #noteForm="ngForm">
+                    <mat-form-field>
+                        <mat-label>
+                            Title
+                        </mat-label>
+                        <input type="text" matInput name="title" #title="ngModel" [(ngModel)]="notes.title" required>
+                        <div *ngIf="title?.invalid && (title?.dirty || title?.touched)">
+                            Note title is required
+                        </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label> Note Content
+                        </mat-label>
+                        <textarea name="content" matInput required #content="ngModel" [(ngModel)]="notes.content" required></textarea>
+                        <div *ngIf="content?.invalid && (content?.dirty || content?.touched)">
+                            Note Content is required
+                        </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label> Date Reminder
+                        </mat-label>
+                        <input type="date" matInput name="date" required #date="ngModel" [(ngModel)]="notes.date" required>
+                        <div *ngIf="date?.invalid && (date?.dirty || date?.touched)">
+                            Date is required
+                        </div>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label> Add Category
+                        </mat-label>
+                        <textarea name="content" matInput></textarea>
+                    </mat-form-field>
+                    Priority
+                    <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="1">Low</mat-radio-button>
+                            <mat-radio-button value="2">Medium</mat-radio-button>
+                            <mat-radio-button value="2">High</mat-radio-button>
+                            <mat-radio-button value="2">Critical</mat-radio-button>
+                          </mat-radio-group>
+                          <button mat-mini-fab matSuffix color="primary" [disabled]="noteForm.invalid" (click)="addNote()">
+                            <mat-icon class="icon">
+                                save
+                            </mat-icon>  
+                            </button>
+                        </form>
+                    </mat-card-content>
+            </mat-card>
+</div>

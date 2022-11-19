@@ -1,0 +1,44 @@
+<div>
+    <app-search (key2)="getData($event)"></app-search>
+</div>
+<div class="container">
+    <div class="noteBody">
+    <mat-card *ngFor="let x of notes" (mouseover)="isControl=true; id=x.id">
+        <mat-card-title>
+            {{x.title}}
+            <span *ngIf="x.priority=='Critical'"><mat-icon class="icon" color="accent">gpp_maybe</mat-icon></span>
+            <span *ngIf="x.priority=='High'"><mat-icon class="icon" color="accent">arrow_circle_up</mat-icon></span>
+            <span *ngIf="x.priority=='Medium'"><mat-icon class="icon" color="primary">remove_circle_outline</mat-icon></span>
+            <span *ngIf="x.priority=='Low'"><mat-icon class="icon" color="primary">arrow_circle_down</mat-icon></span>
+        </mat-card-title>
+        <span class="date">{{x.reminderDate?.replace('T',' ')}}
+        </span>
+        <mat-card-content>
+            {{x.content}}
+        </mat-card-content>
+        <span class="category">{{x.category}}</span>
+    <div class="controls" *ngIf="isControl&& id==x.id">
+        <button mat-icon-button matSuffix>
+        <mat-icon class="icon" color="primary">
+            bookmark
+        </mat-icon>  
+        </button>
+        <button mat-icon-button matSuffix>
+            <mat-icon class="icon" color="primary">
+                edit
+            </mat-icon>  
+        </button>
+        <button mat-icon-button matSuffix (click)="deleteNote(id)">
+            <mat-icon class="icon" color="primary">
+                delete
+            </mat-icon>  
+        </button>
+            <button mat-icon-button matSuffix>
+                <mat-icon class="icon" color="accent">
+                    notifications
+                </mat-icon>  
+        </button>
+    </div>
+</mat-card>
+</div>
+</div>

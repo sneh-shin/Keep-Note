@@ -1,0 +1,105 @@
+<div class="grid-container">
+  <mat-card>
+    <mat-card-title>
+      <h1 style="color:#3f51b5;">Registration Form</h1>
+    </mat-card-title>
+    <mat-card-content>
+  <div class="container">
+    <form [formGroup]="userForm" (submit)="saveData(userForm)">
+
+    <div class="double">
+      <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input type="text" formControlName="firstName" matInput name="firstName" required>
+      <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
+      First Name is required
+      </mat-error> 
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input type="text" formControlName="lastName" matInput name="lastName" required>
+      <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength')">
+      Last Name should have atleat minimum 2 characters
+      </mat-error> 
+      </mat-form-field>
+    </div>
+    
+    <mat-form-field appearance="fill" class="email">
+     <mat-label>Email</mat-label>
+      <input type="text" formControlName="email" matInput name="email" required>
+      <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+      Email is required.
+      </mat-error>
+      <mat-error *ngIf="userForm.controls['email'].hasError('checkIfGuestEmailsAreValid')">
+      Enter valid email address.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="double">
+      <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" formControlName="password" matInput name="password" required 
+      pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9]).{8,}$">
+      <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">Password should have min 8 letter password, with at least a symbol,
+          upper and lower case letters and a number</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+      <mat-label>Confirm Password</mat-label>
+      <input type="password" formControlName="conPassword" matInput name="conPassword" required>
+      </mat-form-field>
+    </div>
+
+      <mat-radio-group aria-label="Select an option">
+        Gender
+      <mat-radio-button value="1">Male</mat-radio-button>
+      <mat-radio-button value="2">Female</mat-radio-button>
+      </mat-radio-group>
+
+    <div class="double">
+    <mat-form-field appearance="fill">
+     <mat-label>Age</mat-label>
+      <input type="number" formControlName="age" matInput name="age" required min="18">
+      <mat-error *ngIf="userForm.controls['age'].hasError('min')">Age must be 18 years and above</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+     <mat-label>Phone Number</mat-label>
+      <input type="number" formControlName="phoneNumber" matInput name="phoneNumber" required pattern="[7-9][0-9]{9}">
+      <mat-error *ngIf="userForm.controls['phoneNumber'].hasError('pattern')">Valid phoneNumber contains 10 digits starting with 7/8/9 </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="address">
+      Address 
+    <div>
+      <mat-form-field appearance="fill" class="street">
+     <mat-label>Street</mat-label>
+      <input type="text" formControlName="street" matInput name="street">
+      </mat-form-field>
+    </div>
+    <div class="double">
+      <mat-form-field appearance="fill">
+     <mat-label>City</mat-label>
+      <input type="text" formControlName="city" matInput name="city">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+     <mat-label>State</mat-label>
+      <input type="text" formControlName="state" matInput name="state">
+      </mat-form-field>
+    </div>
+    </div>
+
+    
+      <mat-form-field appearance="fill" class="zip">
+     <mat-label>Zip Code</mat-label>
+      <input type="number" formControlName="zipCode" matInput name="zipCode" required pattern="[0-9]{5}">
+      <mat-error *ngIf="userForm.controls['zipCode'].hasError('pattern')">Zip code must be 5 digit number</mat-error>
+      </mat-form-field>
+       <div class="button">
+      <button mat-raised-button color="accent" type="reset">Reset</button>
+    <button mat-raised-button color="accent" [disabled]="userForm.invalid" type="submit">Submit</button>
+    </div>
+    </form>
+  </div>
+    </mat-card-content>
+  </mat-card>
+</div>
