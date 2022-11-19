@@ -4,6 +4,7 @@ import { AddNoteComponent } from './add-note/add-note.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'add-note',
     component: AddNoteComponent,
+  },
+  {
+    path: 'login',
+    component : LoginComponent,
   },
   {
     path: '**',
